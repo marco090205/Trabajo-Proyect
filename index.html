@@ -1,0 +1,3284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REYES TECH SOLUTIONS | Soluciones Tecnológicas</title>
+  <meta property="og:site_name" content="REYES TECH SOLUTIONS">
+  <meta name="application-name" content="REYES TECH SOLUTIONS">
+
+  <meta name="apple-mobile-web-app-title" content="REYES TECH SOLUTIONS">
+  <meta name="description" content="Reyes Tech Solutions ofrece soporte técnico, mantenimiento de computadoras, instalación de software y desarrollo de páginas web profesionales en Campeche." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Reyes Tech Solutions" />
+  <link rel="canonical" href="https://reyestechsolutions.netlify.app/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Reyes Tech Solutions | Soporte Técnico y Desarrollo Web" />
+  <meta property="og:description" content="Soluciones tecnológicas, soporte técnico, optimización de equipos, instalación de software y páginas web profesionales." />
+  <meta property="og:url" content="https://reyestechsolutions.netlify.app/" />
+  <meta property="og:image" content="https://reyestechsolutions.netlify.app/Logo-trabajo.png" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Reyes Tech Solutions | Soporte Técnico y Desarrollo Web" />
+  <meta name="twitter:description" content="Soporte técnico, mantenimiento de computadoras, instalación de software y desarrollo web profesional." />
+  <meta name="twitter:image" content="https://reyestechsolutions.netlify.app/Logo-trabajo.png" />
+  <meta name="author" content="REYES TECH SOLUTIONS">
+
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Reyes Tech Solutions",
+  "url": "https://reyestechsolutions.netlify.app/",
+  "logo": "https://reyestechsolutions.netlify.app/Logo-trabajo.png",
+  "image": "https://reyestechsolutions.netlify.app/Logo-trabajo.png",
+  "telephone": "+52 982 120 9690",
+  "priceRange": "$$",
+  "description": "Soporte técnico, mantenimiento de computadoras, instalación de software y desarrollo de páginas web profesionales.",
+  "areaServed": "Campeche, México",
+  "sameAs": [],
+
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Sabancuy",
+    "addressLocality": "Sabancuy",
+    "addressRegion": "Campeche",
+    "postalCode": "24300",
+    "addressCountry": "MX"
+  }
+}
+</script>
+
+  </script>
+  <meta name="theme-color" content="#020617" />
+  <meta name="application-name" content="REYES TECH SOLUTIONS" />
+  <meta name="apple-mobile-web-app-title" content="REYES TECH" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="icon" type="image/png" href="Logo-trabajo.png" />
+  <link rel="shortcut icon" type="image/png" href="Logo-trabajo.png" />
+  <link rel="apple-touch-icon" href="Logo-trabajo.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    :root {
+      --bg: #020617;
+      --bg-2: #06172e;
+      --panel: rgba(8, 20, 41, 0.78);
+      --panel-strong: rgba(12, 31, 60, 0.92);
+      --line: rgba(148, 193, 255, 0.18);
+      --line-strong: rgba(0, 170, 255, 0.42);
+      --text: #f8fafc;
+      --muted: #b8c6d9;
+      --soft: #7f94ad;
+      --cyan: #00aaff;
+      --cyan-2: #0077ff;
+      --yellow: #ffd000;
+      --green: #25d366;
+      --danger: #ff5d5d;
+      --shadow: 0 26px 70px rgba(0, 0, 0, 0.36);
+      --radius: 22px;
+      --radius-sm: 14px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overscroll-behavior-y: none;
+      touch-action: pan-y;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        linear-gradient(135deg, rgba(0, 170, 255, 0.13), transparent 30%),
+        radial-gradient(circle at 90% 8%, rgba(0, 119, 255, 0.22), transparent 28%),
+        linear-gradient(180deg, #020617 0%, #06172e 46%, #020617 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      overscroll-behavior-y: none;
+      touch-action: pan-y;
+    }
+
+    body.is-loading {
+      overflow: hidden;
+    }
+
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 42%, rgba(0, 170, 255, 0.24), transparent 28%),
+        radial-gradient(circle at 50% 52%, rgba(0, 71, 255, 0.18), transparent 36%),
+        linear-gradient(180deg, #020617 0%, #06172e 54%, #020617 100%);
+      overflow: hidden;
+      transition: opacity 0.65s ease, visibility 0.65s ease;
+    }
+
+    .page-loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .page-loader::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at center, black, transparent 72%);
+      animation: loaderGrid 3.2s linear infinite;
+    }
+
+    .page-loader::after {
+      content: "";
+      position: absolute;
+      inset: -35%;
+      background: conic-gradient(from 90deg, transparent, rgba(0, 170, 255, 0.2), transparent 34%, rgba(255, 208, 0, 0.12), transparent 64%);
+      animation: loaderSweep 4.8s linear infinite;
+      opacity: 0.78;
+    }
+
+    .loader-core {
+      position: relative;
+      z-index: 1;
+      width: min(430px, 92vw);
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+    }
+
+    .loader-orbit {
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 170, 255, 0.28);
+      box-shadow: inset 0 0 28px rgba(0, 170, 255, 0.1), 0 0 28px rgba(0, 170, 255, 0.08);
+    }
+
+    .loader-orbit.one {
+      width: 330px;
+      height: 330px;
+      animation: loaderSpin 8s linear infinite;
+    }
+
+    .loader-orbit.two {
+      width: 260px;
+      height: 260px;
+      border-style: dashed;
+      border-color: rgba(255, 255, 255, 0.2);
+      animation: loaderSpin 5.8s linear infinite reverse;
+    }
+
+    .loader-orbit.three {
+      width: 190px;
+      height: 190px;
+      border-color: rgba(255, 208, 0, 0.22);
+      animation: loaderPulse 1.8s ease-in-out infinite;
+    }
+
+    .loader-logo-wrap {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      display: grid;
+      place-items: center;
+      border-radius: 34px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.16), transparent 38%),
+        rgba(2, 6, 23, 0.82);
+      border: 1px solid rgba(0, 170, 255, 0.38);
+      box-shadow: 0 0 44px rgba(0, 170, 255, 0.38), inset 0 0 28px rgba(0, 170, 255, 0.12);
+      overflow: hidden;
+      animation: loaderLogo 1.8s ease-in-out infinite;
+    }
+
+    .loader-logo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: linear-gradient(115deg, transparent 38%, rgba(255, 255, 255, 0.7), transparent 56%);
+      transform: translateX(-90%);
+      animation: loaderShine 2.2s ease-in-out infinite;
+    }
+
+    .loader-logo {
+      width: 128px;
+      height: 128px;
+      object-fit: cover;
+      border-radius: 26px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .loader-content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 22px;
+    }
+
+    .loader-title {
+      font-size: clamp(22px, 6vw, 34px);
+      font-weight: 950;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .loader-title span {
+      color: var(--cyan);
+      text-shadow: 0 0 22px rgba(0, 170, 255, 0.55);
+    }
+
+    .loader-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .loader-progress {
+      width: min(290px, 74vw);
+      height: 8px;
+      margin: 0 auto;
+      border-radius: 999px;
+      padding: 2px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      overflow: hidden;
+    }
+
+    .loader-progress span {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--cyan), #62e5ff, var(--yellow));
+      box-shadow: 0 0 22px rgba(0, 170, 255, 0.58);
+      transform-origin: left;
+      animation: loaderProgress 4.7s ease-in-out forwards;
+    }
+
+    .loader-particle {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 18px rgba(0, 170, 255, 0.9);
+      transform: rotate(var(--angle)) translateY(-180px);
+      animation: loaderParticle 2.4s ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+
+    @keyframes loaderGrid {
+      from { background-position: 0 0, 0 0; }
+      to { background-position: 48px 48px, 48px 48px; }
+    }
+
+    @keyframes loaderSweep {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes loaderSpin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes loaderPulse {
+      0%, 100% { transform: scale(0.96); opacity: 0.55; }
+      50% { transform: scale(1.05); opacity: 1; }
+    }
+
+    @keyframes loaderLogo {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.035); }
+    }
+
+    @keyframes loaderShine {
+      0% { transform: translateX(-90%) rotate(8deg); }
+      48%, 100% { transform: translateX(92%) rotate(8deg); }
+    }
+
+    @keyframes loaderProgress {
+      0% { transform: scaleX(0.08); }
+      55% { transform: scaleX(0.72); }
+      100% { transform: scaleX(1); }
+    }
+
+    @keyframes loaderParticle {
+      0%, 100% { opacity: 0.25; transform: rotate(var(--angle)) translateY(-150px) scale(0.75); }
+      50% { opacity: 1; transform: rotate(var(--angle)) translateY(-190px) scale(1.12); }
+    }
+
+    @media (max-width: 520px) {
+      .loader-core {
+        min-height: 380px;
+      }
+
+      .loader-orbit.one {
+        width: 282px;
+        height: 282px;
+      }
+
+      .loader-orbit.two {
+        width: 224px;
+        height: 224px;
+      }
+
+      .loader-orbit.three {
+        width: 166px;
+        height: 166px;
+      }
+
+      .loader-logo-wrap {
+        width: 126px;
+        height: 126px;
+        border-radius: 28px;
+      }
+
+      .loader-logo {
+        width: 106px;
+        height: 106px;
+        border-radius: 22px;
+      }
+
+      .loader-particle {
+        transform: rotate(var(--angle)) translateY(-146px);
+      }
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 54px 54px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(90deg, rgba(0, 170, 255, 0.09), transparent 18%, transparent 82%, rgba(0, 170, 255, 0.08)),
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.08), transparent 38%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    header {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      background: rgba(2, 6, 23, 0.78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      max-width: 1240px;
+      margin: auto;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      text-decoration: none;
+      min-width: max-content;
+    }
+
+    
+    .brand-banner{
+      padding:0 !important;
+      background:transparent !important;
+      border:none !important;
+      box-shadow:none !important;
+    }
+    .header-logo{
+      height:68px;
+      width:auto;
+      display:block;
+      border-radius:18px;
+      object-fit:contain;
+      mix-blend-mode:screen;
+      filter: drop-shadow(0 0 8px rgba(0,170,255,.18));
+      transition:.3s ease;
+    }
+    .header-logo:hover{
+      transform:scale(1.02);
+    }
+.logo {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.18), transparent 32%),
+        linear-gradient(135deg, #00c6ff, #0047ff);
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: 31px;
+      letter-spacing: -2px;
+      box-shadow: 0 0 26px rgba(0, 170, 255, 0.48), inset 0 0 18px rgba(255, 255, 255, 0.18);
+      position: relative;
+    }
+
+    .logo::before {
+      content: "♛";
+      position: absolute;
+      top: -18px;
+      font-size: 22px;
+      color: #22c7ff;
+      filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.55));
+    }
+
+    .brand-text h1 {
+      font-size: 20px;
+      line-height: 0.95;
+      letter-spacing: 1.6px;
+      font-weight: 950;
+    }
+
+    .brand-text span {
+      display: block;
+      margin-top: 4px;
+      color: var(--cyan);
+      font-size: 12px;
+      letter-spacing: 2.4px;
+      font-weight: 800;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      list-style: none;
+      padding: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.045);
+    }
+
+    nav a {
+      display: inline-flex;
+      padding: 9px 13px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 750;
+      border-radius: 999px;
+      transition: color 0.25s, background 0.25s;
+    }
+
+    nav a:hover {
+      color: var(--text);
+      background: rgba(0, 170, 255, 0.14);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      min-height: 46px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 900;
+      color: white;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent),
+        linear-gradient(135deg, #00aaff, #0047ff);
+      box-shadow: 0 16px 36px rgba(0, 119, 255, 0.33);
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.38);
+      box-shadow: 0 20px 42px rgba(0, 119, 255, 0.44);
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.07);
+      box-shadow: none;
+    }
+
+    .btn-whatsapp {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent),
+        linear-gradient(135deg, #25d366, #128c4a);
+      box-shadow: 0 18px 42px rgba(37, 211, 102, 0.25);
+    }
+
+    section {
+      padding: 96px 22px;
+      position: relative;
+    }
+
+    .container {
+      width: min(1240px, 100%);
+      margin: auto;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 122px;
+      padding-bottom: 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(330px, 0.75fr);
+      gap: 38px;
+      align-items: center;
+    }
+
+    .eyeline {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #ccefff;
+      font-size: 13px;
+      font-weight: 850;
+      letter-spacing: 0.4px;
+      margin-bottom: 18px;
+    }
+
+    .eyeline::before {
+      content: "";
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      border-radius: 999px;
+    }
+
+    .hero h2 {
+      max-width: 780px;
+      font-size: clamp(42px, 5.8vw, 78px);
+      line-height: 0.94;
+      letter-spacing: 0;
+      margin-bottom: 24px;
+      font-weight: 950;
+      overflow-wrap: break-word;
+    }
+
+    .hero h2 span {
+      color: var(--cyan);
+      text-shadow: 0 0 36px rgba(0, 170, 255, 0.48);
+    }
+
+    .hero p {
+      max-width: 690px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.75;
+      margin-bottom: 28px;
+      overflow-wrap: break-word;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .quick-proof {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      max-width: 760px;
+    }
+
+    .proof-item,
+    .panel,
+    .service-card,
+    .price-card,
+    .step,
+    .contact-info,
+    form {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .proof-item {
+      padding: 18px;
+      min-height: 104px;
+    }
+
+    .proof-item strong {
+      display: block;
+      color: var(--text);
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .proof-item span {
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .hero-showcase {
+      position: relative;
+    }
+
+    .hero-showcase::before {
+      content: "";
+      position: absolute;
+      inset: 38px -18px -22px 30px;
+      border: 1px solid rgba(0, 170, 255, 0.22);
+      border-radius: 32px;
+      transform: rotate(-2deg);
+      z-index: 0;
+    }
+
+    .brand-display {
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      padding: 18px;
+      border-radius: 30px;
+      background:
+        linear-gradient(145deg, rgba(0, 170, 255, 0.2), transparent 30%),
+        rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(148, 193, 255, 0.22);
+      box-shadow: 0 36px 90px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-display img {
+      width: 100%;
+      aspect-ratio: 1.18 / 1;
+      object-fit: cover;
+      object-position: 72% 50%;
+      display: block;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+    }
+
+    .showcase-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .showcase-chip {
+      min-height: 78px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      background: rgba(2, 6, 23, 0.68);
+    }
+
+    .showcase-chip span {
+      display: block;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .showcase-chip strong {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+
+    .floating-contact {
+      position: absolute;
+      right: -16px;
+      bottom: 138px;
+      z-index: 2;
+      width: min(265px, 64%);
+      padding: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(37, 211, 102, 0.45);
+      background: rgba(2, 20, 19, 0.9);
+      box-shadow: 0 20px 54px rgba(0, 0, 0, 0.48);
+    }
+
+    .floating-contact span {
+      color: #9ff3c3;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .floating-contact strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 20px;
+    }
+
+    .section-title {
+      max-width: 820px;
+      margin: 0 auto 46px;
+      text-align: center;
+    }
+
+    .section-title span {
+      display: block;
+      color: var(--cyan);
+      font-size: 13px;
+      font-weight: 950;
+      letter-spacing: 2.6px;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(32px, 4.4vw, 52px);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      font-weight: 950;
+    }
+
+    .section-title p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .services-layout {
+      display: grid;
+      grid-template-columns: 0.82fr 1.18fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .service-highlight {
+      padding: 28px;
+      overflow: hidden;
+      position: sticky;
+      top: 105px;
+      align-self: start;
+    }
+
+    .service-highlight img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: 16% 22%;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      margin-bottom: 22px;
+    }
+
+    .service-highlight h3 {
+      font-size: 30px;
+      line-height: 1.05;
+      margin-bottom: 14px;
+    }
+
+    .service-highlight p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .mini-list {
+      display: grid;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .mini-list li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #dbeafe;
+      font-weight: 700;
+    }
+
+    .mini-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--cyan);
+      box-shadow: 0 0 14px rgba(0, 170, 255, 0.8);
+      flex: 0 0 auto;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s, border-color 0.25s, background 0.25s;
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--line-strong);
+      background:
+        linear-gradient(180deg, rgba(0, 170, 255, 0.12), rgba(255, 255, 255, 0.035)),
+        var(--panel);
+    }
+
+    .service-card:hover::after {
+      opacity: 1;
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.25), rgba(0, 71, 255, 0.18));
+      border: 1px solid rgba(0, 170, 255, 0.38);
+      color: #bdefff;
+    }
+
+    .icon svg {
+      width: 27px;
+      height: 27px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .service-card h3 {
+      font-size: 22px;
+      margin-bottom: 11px;
+      line-height: 1.16;
+    }
+
+    .service-card p,
+    .service-card li,
+    .step p,
+    .price-card li {
+      color: var(--muted);
+      line-height: 1.68;
+      font-size: 15px;
+    }
+
+    .service-card ul,
+    .price-card ul {
+      list-style: none;
+      margin-top: 15px;
+    }
+
+    .service-card li,
+    .price-card li {
+      display: flex;
+      gap: 9px;
+      padding: 6px 0;
+    }
+
+    .service-card li::before,
+    .price-card li::before {
+      content: "✓";
+      color: var(--cyan);
+      font-weight: 950;
+      flex: 0 0 auto;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.02fr 0.98fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .about-box {
+      padding: 34px;
+    }
+
+    .about-box h2 {
+      font-size: clamp(32px, 4vw, 46px);
+      line-height: 1.08;
+      margin-bottom: 18px;
+    }
+
+    .about-box h2 span {
+      color: var(--cyan);
+    }
+
+    .about-box p {
+      color: var(--muted);
+      line-height: 1.82;
+      margin-bottom: 16px;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 13px;
+      margin-top: 22px;
+    }
+
+    .value {
+      min-height: 118px;
+      padding: 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .value strong {
+      display: block;
+      color: var(--cyan);
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .value span {
+      color: #dbeafe;
+      line-height: 1.48;
+      font-size: 14px;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 12px;
+      list-style: none;
+      margin-top: 22px;
+    }
+
+    .why-list li {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #eaf4ff;
+      font-weight: 750;
+    }
+
+    .why-list li::before {
+      content: "✓";
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      color: #00121f;
+      background: var(--cyan);
+      font-weight: 950;
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      counter-reset: paso;
+    }
+
+    .step {
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .step::before {
+      counter-increment: paso;
+      content: "0" counter(paso);
+      display: block;
+      color: rgba(0, 170, 255, 0.34);
+      font-size: 46px;
+      font-weight: 950;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step::after {
+      content: "";
+      position: absolute;
+      top: 48px;
+      right: -30px;
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cyan), transparent);
+      opacity: 0.45;
+    }
+
+    .step h3 {
+      font-size: 21px;
+      margin-bottom: 9px;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .price-card.featured {
+      border-color: rgba(255, 208, 0, 0.55);
+      background:
+        linear-gradient(180deg, rgba(255, 208, 0, 0.13), rgba(255, 255, 255, 0.035)),
+        var(--panel-strong);
+      transform: translateY(-10px);
+    }
+
+    .price-card.featured::before {
+      content: "Más solicitado";
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #1c1400;
+      background: var(--yellow);
+      font-size: 12px;
+      font-weight: 950;
+    }
+
+    .price-card h3 {
+      max-width: 72%;
+      font-size: 25px;
+      margin-bottom: 12px;
+      line-height: 1.1;
+    }
+
+    .price {
+      font-size: 35px;
+      font-weight: 950;
+      color: var(--cyan);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .price small {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .price-card ul {
+      margin-bottom: 26px;
+      flex: 1;
+    }
+
+    .price-card li {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 0;
+    }
+
+    .price-card .btn {
+      width: 100%;
+    }
+
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .work {
+      min-height: 270px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      position: relative;
+      background:
+        linear-gradient(to top, rgba(2, 6, 23, 0.94), rgba(2, 6, 23, 0.22)),
+        linear-gradient(135deg, #0d1b34, #06111f);
+      box-shadow: var(--shadow);
+    }
+
+    .work:nth-child(1),
+    .work:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .work::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: url("Pancartas - Trabajos.png");
+      background-size: 230%;
+      background-position: center;
+      opacity: 0.18;
+      filter: saturate(1.2);
+      transition: opacity 0.25s, transform 0.25s;
+    }
+
+    .work:nth-child(2)::before { background-position: 20% 18%; }
+    .work:nth-child(3)::before { background-position: 75% 18%; }
+    .work:nth-child(4)::before { background-position: 20% 78%; }
+    .work:nth-child(5)::before { background-position: 54% 78%; }
+    .work:nth-child(6)::before { background-position: 88% 76%; }
+
+    .work:hover::before {
+      opacity: 0.28;
+      transform: scale(1.04);
+    }
+
+    .work h3,
+    .work p {
+      position: relative;
+      z-index: 1;
+    }
+
+    .work h3 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .work p {
+      color: var(--muted);
+      line-height: 1.65;
+      max-width: 540px;
+    }
+
+    .evidence-grid,
+    .web-grid,
+    .demo-grid,
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .evidence-card,
+    .website-card {
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      backdrop-filter: blur(16px);
+    }
+
+    .evidence-card video {
+      display: block;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      object-fit: contain;
+      background: #020617;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .evidence-card video:fullscreen {
+      object-fit: contain;
+      background: #000;
+    }
+
+    .evidence-card video:-webkit-full-screen {
+      object-fit: contain;
+      background: #000;
+    }
+
+    .evidence-body,
+    .website-card {
+      padding: 22px;
+    }
+
+    .evidence-body span,
+    .website-card span {
+      display: block;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 950;
+      letter-spacing: 1.8px;
+      margin-bottom: 9px;
+      text-transform: uppercase;
+    }
+
+    .evidence-body h3,
+    .website-card h3 {
+      font-size: 22px;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+
+    .evidence-body p,
+    .website-card p {
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 15px;
+    }
+
+    .website-card {
+      min-height: 310px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .website-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 18% 18%, rgba(0, 170, 255, 0.22), transparent 28%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 34%);
+      opacity: 0.95;
+      pointer-events: none;
+    }
+
+    .website-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .website-preview {
+      height: 150px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      position: relative;
+      background: #071427;
+    }
+
+    .website-preview::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.46)),
+        linear-gradient(90deg, rgba(0, 170, 255, 0.14), transparent 34%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .website-preview iframe {
+      position: relative;
+      z-index: 2;
+      width: 400%;
+      height: 400%;
+      border: 0;
+      transform: scale(0.25);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: #ffffff;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .website-preview.preview-loaded iframe {
+      opacity: 1;
+    }
+
+    .website-preview-fallback {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 16px;
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 13px;
+      font-weight: 850;
+      text-align: center;
+      background:
+        repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0 1px, transparent 1px 14px),
+        #071427;
+      z-index: 0;
+    }
+
+    .demo-preview {
+      display: grid;
+      grid-template-rows: 28px 1fr;
+      padding: 0;
+    }
+
+    .demo-preview iframe {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      width: 400%;
+      height: 400%;
+      border: 0;
+      transform: scale(0.25);
+      transform-origin: 0 0;
+      pointer-events: none;
+      background: #ffffff;
+    }
+
+    .demo-preview.has-preview iframe {
+      display: block;
+    }
+
+    .demo-preview.has-preview .demo-preview-bar,
+    .demo-preview.has-preview .demo-preview-screen {
+      display: none;
+    }
+
+    .demo-preview-bar {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 0 13px;
+      background: rgba(2, 6, 23, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .demo-preview-bar i {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .demo-preview-screen {
+      position: relative;
+      padding: 18px;
+      background:
+        linear-gradient(135deg, rgba(0, 170, 255, 0.18), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent),
+        #071427;
+    }
+
+    .demo-preview-screen::before,
+    .demo-preview-screen::after {
+      content: "";
+      display: block;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .demo-preview-screen::before {
+      width: 62%;
+      height: 13px;
+      margin-bottom: 16px;
+    }
+
+    .demo-preview-screen::after {
+      width: 82%;
+      height: 9px;
+      box-shadow:
+        0 18px 0 rgba(0, 170, 255, 0.7),
+        0 36px 0 rgba(255, 255, 255, 0.18);
+      opacity: 0.7;
+    }
+
+    .demo-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      width: max-content;
+      max-width: 100%;
+      margin-bottom: 12px;
+      padding: 8px 11px;
+      border-radius: 999px;
+      color: #ffe88a;
+      background: rgba(255, 208, 0, 0.1);
+      border: 1px solid rgba(255, 208, 0, 0.24);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .btn-disabled {
+      opacity: 0.72;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    .btn-disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .website-card p {
+      flex: 1;
+      margin-bottom: 22px;
+    }
+
+    .website-card .btn {
+      width: 100%;
+    }
+
+    .testimonial-card {
+      min-height: 330px;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(0, 170, 255, 0.22), transparent 32%),
+        linear-gradient(135deg, rgba(255, 208, 0, 0.08), transparent 36%);
+      pointer-events: none;
+    }
+
+    .testimonial-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stars {
+      color: var(--yellow);
+      font-size: 20px;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+      text-shadow: 0 0 18px rgba(255, 208, 0, 0.22);
+    }
+
+    .testimonial-card blockquote {
+      color: #eaf4ff;
+      font-size: 16px;
+      line-height: 1.75;
+      flex: 1;
+      margin-bottom: 22px;
+    }
+
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .testimonial-avatar {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 15px;
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.28), rgba(0, 71, 255, 0.18));
+      border: 1px solid rgba(0, 170, 255, 0.38);
+      color: #bdefff;
+      font-weight: 950;
+    }
+
+    .testimonial-author strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .testimonial-author span {
+      display: block;
+      color: var(--soft);
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .demo-note {
+      max-width: 780px;
+      margin: 26px auto 0;
+      padding: 14px 18px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+      border: 1px solid rgba(255, 208, 0, 0.22);
+      border-radius: 16px;
+      background: rgba(255, 208, 0, 0.07);
+    }
+
+    .review-panel {
+      margin-top: 26px;
+      padding: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.095), rgba(255, 255, 255, 0.035)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .review-panel h3 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .review-panel p {
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+
+    .review-form {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      padding: 0;
+      background: transparent;
+      border: 0;
+      border-radius: 0;
+      box-shadow: none;
+      backdrop-filter: none;
+    }
+
+    .review-form .field-full {
+      grid-column: 1 / -1;
+    }
+
+    .rating-picker {
+      display: inline-flex;
+      flex-direction: row-reverse;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .rating-picker input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rating-picker label {
+      margin: 0;
+      color: rgba(255, 255, 255, 0.28);
+      font-size: 34px;
+      line-height: 1;
+      cursor: pointer;
+      transition: color 0.2s, transform 0.2s, text-shadow 0.2s;
+    }
+
+    .rating-picker label:hover,
+    .rating-picker label:hover ~ label,
+    .rating-picker input:checked ~ label {
+      color: var(--yellow);
+      text-shadow: 0 0 18px rgba(255, 208, 0, 0.25);
+    }
+
+    .rating-picker label:hover {
+      transform: translateY(-2px);
+    }
+
+    .review-message {
+      min-height: 22px;
+      color: #9ff3c3;
+      font-weight: 850;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 0.92fr 1.08fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .contact-info,
+    form {
+      padding: 32px;
+    }
+
+    .contact-info h3 {
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .contact-info > p {
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .contact-item {
+      padding: 17px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 13px;
+    }
+
+    .contact-item strong {
+      display: block;
+      color: var(--cyan);
+      margin-bottom: 6px;
+      font-size: 13px;
+      letter-spacing: 0.4px;
+    }
+
+    .contact-item a,
+    .contact-item span {
+      color: var(--text);
+      text-decoration: none;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    form label {
+      display: block;
+      color: #dbeafe;
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 8px;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      width: 100%;
+      padding: 15px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.07);
+      color: white;
+      outline: none;
+      font-size: 15px;
+      transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+    }
+
+    form textarea {
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+      border-color: var(--cyan);
+      background: rgba(0, 170, 255, 0.075);
+      box-shadow: 0 0 0 4px rgba(0, 170, 255, 0.12);
+    }
+
+    form input::placeholder,
+    form textarea::placeholder {
+      color: #7f94ad;
+    }
+
+    form select option {
+      color: #020617;
+    }
+
+    footer {
+      padding: 36px 22px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      background: rgba(2, 6, 23, 0.82);
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    footer strong {
+      color: var(--text);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 62px;
+      height: 62px;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-size: 30px;
+      z-index: 1001;
+      box-shadow: 0 16px 40px rgba(37, 211, 102, 0.42);
+      animation: pulse 1.9s infinite;
+    }
+
+    .whatsapp-float svg {
+      width: 30px;
+      height: 30px;
+      fill: currentColor;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+      100% { transform: scale(1); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    .menu-btn {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid var(--line);
+      color: white;
+      border-radius: 14px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.04)),
+        rgba(8, 20, 41, 0.9);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28), inset 0 0 18px rgba(0, 170, 255, 0.08);
+      cursor: pointer;
+      position: relative;
+      transition: border-color 0.25s, background 0.25s, transform 0.25s;
+    }
+
+    .menu-btn:hover {
+      border-color: var(--line-strong);
+      transform: translateY(-1px);
+    }
+
+    .menu-btn span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: #dff6ff;
+      box-shadow: 0 0 12px rgba(0, 170, 255, 0.35);
+      transition: transform 0.25s, opacity 0.25s;
+    }
+
+    .menu-btn span + span {
+      margin-top: 5px;
+    }
+
+    .menu-btn.active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-btn.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-btn.active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    @media (max-width: 1040px) {
+      .nav {
+        gap: 14px;
+      }
+
+      nav ul {
+        gap: 2px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+      }
+
+      .services-layout,
+      .about,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-highlight {
+        position: relative;
+        top: 0;
+      }
+
+      .service-highlight img {
+        aspect-ratio: 16 / 9;
+        object-position: center;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .menu-btn {
+        display: grid;
+        place-items: center;
+        margin-left: auto;
+        flex: 0 0 46px;
+        position: fixed;
+        top: 13px;
+        right: auto;
+        left: clamp(258px, calc(100vw - 62px), 328px);
+        z-index: 1002;
+      }
+
+      .nav {
+        width: 100%;
+        max-width: 100%;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      nav {
+        position: fixed;
+        top: 82px;
+        left: 18px;
+        right: 18px;
+        display: none;
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(2, 6, 23, 0.96);
+        box-shadow: var(--shadow);
+      }
+
+      nav.active {
+        display: block;
+      }
+
+      nav ul {
+        display: grid;
+        border: 0;
+        background: transparent;
+        padding: 0;
+      }
+
+      nav a {
+        display: flex;
+        padding: 13px 14px;
+      }
+
+      .nav > .btn {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 118px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid {
+        gap: 36px;
+      }
+
+      .quick-proof,
+      .grid-3,
+      .pricing,
+      .portfolio,
+      .evidence-grid,
+      .web-grid,
+      .demo-grid,
+      .testimonials-grid,
+      .process {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .work:nth-child(1),
+      .work:nth-child(4) {
+        grid-column: span 1;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 74px 17px;
+      }
+
+      .nav {
+        padding: 13px 16px;
+      }
+
+      .brand-text h1 {
+        font-size: 16px;
+      }
+
+      .brand-text span {
+        font-size: 10px;
+        letter-spacing: 1.6px;
+      }
+
+      .logo {
+        width: 46px;
+        height: 46px;
+      }
+
+      .hero h2 {
+        font-size: 38px;
+        line-height: 1.02;
+        max-width: 10.5ch;
+      }
+
+      .hero p {
+        font-size: 16px;
+        max-width: 34ch;
+      }
+
+      .review-form {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-grid > *,
+      .container {
+        min-width: 0;
+      }
+
+      .eyeline {
+        align-items: flex-start;
+        line-height: 1.35;
+      }
+
+      .quick-proof,
+      .grid-3,
+      .pricing,
+      .portfolio,
+      .evidence-grid,
+      .web-grid,
+      .demo-grid,
+      .testimonials-grid,
+      .process,
+      .values,
+      .form-grid,
+      .showcase-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-showcase::before {
+        display: none;
+      }
+
+      .brand-display {
+        padding: 12px;
+        border-radius: 22px;
+      }
+
+      .brand-display img {
+        aspect-ratio: 1 / 1;
+        border-radius: 16px;
+      }
+
+      .floating-contact {
+        position: static;
+        width: 100%;
+        margin-top: 12px;
+      }
+
+      .about-box,
+      .service-highlight,
+      .contact-info,
+      form,
+      .price-card {
+        padding: 24px;
+      }
+
+      .price-card h3 {
+        max-width: 100%;
+      }
+
+      .price-card.featured::before {
+        position: static;
+        display: inline-flex;
+        width: max-content;
+        margin-bottom: 16px;
+      }
+
+      .website-preview {
+        height: 130px;
+      }
+
+      .demo-preview {
+        height: 180px;
+      }
+
+      .website-preview iframe {
+        width: 400%;
+        height: 400%;
+        transform: scale(0.25);
+      }
+    }
+  
+
+    .install-app-btn {
+      position: fixed;
+      left: 20px;
+      bottom: 22px;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      padding: 12px 18px;
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+      color: #ffffff;
+      font-weight: 800;
+      box-shadow: 0 16px 35px rgba(14, 165, 233, 0.35);
+      cursor: pointer;
+    }
+
+    .install-app-btn.show {
+      display: inline-flex;
+    }
+
+    @media (max-width: 640px) {
+      .install-app-btn {
+        left: 14px;
+        bottom: 90px;
+        padding: 11px 15px;
+        font-size: 0.9rem;
+      }
+    }
+
+
+    /* Ajuste móvil: logo del encabezado centrado e integrado */
+    @media (max-width: 900px) {
+      header {
+        background: rgba(2, 6, 23, 0.86);
+      }
+
+      .nav {
+        position: relative;
+        justify-content: center;
+        min-height: 72px;
+        padding: 10px 72px 10px 72px;
+      }
+
+      .brand.brand-banner {
+        margin: 0 auto;
+        justify-content: center;
+        min-width: 0;
+        max-width: min(64vw, 260px);
+      }
+
+      .header-logo {
+        height: clamp(42px, 12vw, 58px);
+        max-width: 100%;
+        border-radius: 16px;
+        object-fit: contain;
+        object-position: center;
+        mix-blend-mode: normal;
+        filter: drop-shadow(0 0 10px rgba(0, 170, 255, 0.18));
+      }
+
+      .menu-btn {
+        position: absolute;
+        top: 50%;
+        right: 16px;
+        left: auto;
+        transform: translateY(-50%);
+        margin-left: 0;
+      }
+
+      nav {
+        top: 78px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav {
+        padding-left: 58px;
+        padding-right: 58px;
+        min-height: 66px;
+      }
+
+      .brand.brand-banner {
+        max-width: 68vw;
+      }
+
+      .header-logo {
+        height: clamp(38px, 11vw, 50px);
+        border-radius: 14px;
+      }
+
+      .menu-btn {
+        right: 12px;
+        width: 42px;
+        height: 42px;
+      }
+
+      nav {
+        top: 72px;
+      }
+    }
+
+  </style>
+
+
+ <meta name="google-site-verification" content="y4dSCDI58Nd6i8o9yENsrQugXakEQBFn9HVymbvmm84" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "REYES TECH SOLUTIONS",
+    "url": "https://reyestechsolutions.netlify.app",
+    "logo": "https://reyestechsolutions.netlify.app/Logo-trabajo.png"
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebSite",
+    "name":"REYES TECH SOLUTIONS",
+    "alternateName":"Reyes Tech",
+    "url":"https://reyestechsolutions.netlify.app/"
+  }
+  </script>
+
+</head>     
+
+
+
+<body class="is-loading">
+  <div class="page-loader" id="pageLoader" role="status" aria-live="polite" aria-label="Cargando REYES TECH SOLUTIONS">
+    <div class="loader-core">
+      <div class="loader-orbit one"></div>
+      <div class="loader-orbit two"></div>
+      <div class="loader-orbit three"></div>
+      <span class="loader-particle" style="--angle: 0deg; --delay: 0s;"></span>
+      <span class="loader-particle" style="--angle: 30deg; --delay: .1s;"></span>
+      <span class="loader-particle" style="--angle: 60deg; --delay: .2s;"></span>
+      <span class="loader-particle" style="--angle: 90deg; --delay: .3s;"></span>
+      <span class="loader-particle" style="--angle: 120deg; --delay: .4s;"></span>
+      <span class="loader-particle" style="--angle: 150deg; --delay: .5s;"></span>
+      <span class="loader-particle" style="--angle: 180deg; --delay: .6s;"></span>
+      <span class="loader-particle" style="--angle: 210deg; --delay: .7s;"></span>
+      <span class="loader-particle" style="--angle: 240deg; --delay: .8s;"></span>
+      <span class="loader-particle" style="--angle: 270deg; --delay: .9s;"></span>
+      <span class="loader-particle" style="--angle: 300deg; --delay: 1s;"></span>
+      <span class="loader-particle" style="--angle: 330deg; --delay: 1.1s;"></span>
+      <div class="loader-logo-wrap">
+        <img class="loader-logo" src="Logo-trabajo.png" alt="Logo REYES TECH SOLUTIONS" />
+      </div>
+      <div class="loader-content">
+        <div class="loader-title">REYES <span>TECH</span></div>
+        <div class="loader-subtitle">Iniciando soluciones digitales</div>
+        <div class="loader-progress" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <div class="nav">
+      <a href="#inicio" class="brand brand-banner" aria-label="REYES TECH SOLUTIONS">
+        <img src="Logo-trabajo-banner.png" alt="Reyes Tech Solutions" class="header-logo">
+      </a>
+
+      <button class="menu-btn" id="menuButton" type="button" onclick="toggleMenu()" aria-label="Abrir menú" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav id="menu" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#paquetes">Paquetes</a></li>
+          <li><a href="#trabajos">Trabajos</a></li>
+          <li><a href="#evidencias">Evidencias</a></li>
+          <li><a href="#paginas-web">Webs</a></li>
+          <li><a href="#demos-privados">Demos</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <a class="btn btn-whatsapp" href="https://wa.me/529821209690" target="_blank" rel="noopener">Cotizar ahora</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyeline">Soporte técnico, software y páginas web profesionales</div>
+          <h2>La tecnología que <span>impulsa</span> tu éxito</h2>
+          <p>
+            En <strong>REYES TECH SOLUTIONS</strong> resolvemos problemas técnicos y creamos presencia digital
+            para hogares, estudiantes, emprendedores y negocios. Optimizamos equipos, instalamos sistemas,
+            configuramos software legal y desarrollamos páginas web modernas adaptadas a tus necesidades.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-whatsapp" href="https://wa.me/529821209690" target="_blank" rel="noopener">Enviar WhatsApp</a>
+            <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+          </div>
+          <div class="quick-proof">
+            <div class="proof-item"><strong>100%</strong><span>Atención directa y personalizada para cada cliente.</span></div>
+            <div class="proof-item"><strong>Rápido</strong><span>Servicio remoto o presencial según el caso.</span></div>
+            <div class="proof-item"><strong>Seguro</strong><span>Instalaciones, licencias y activaciones responsables.</span></div>
+          </div>
+        </div>
+
+        <div class="hero-showcase" aria-label="Muestra visual de servicios">
+          <div class="brand-display">
+            <img src="Pancartas - Trabajos.png" alt="Pancartas de servicios de REYES TECH SOLUTIONS" />
+            <div class="showcase-strip">
+              <div class="showcase-chip">
+                <span>Soporte completo</span>
+                <strong>Optimización, mantenimiento y seguridad.</strong>
+              </div>
+              <div class="showcase-chip">
+                <span>Presencia digital</span>
+                <strong>Páginas web claras, rápidas y adaptables.</strong>
+              </div>
+            </div>
+          </div>
+          <div class="floating-contact">
+            <span>Atención por WhatsApp</span>
+            <strong>+52 982 120 9690</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="servicios">
+      <div class="container">
+        <div class="section-title">
+          <span>SERVICIOS</span>
+          <h2>Soluciones completas en un solo lugar</h2>
+          <p>Trabajamos con equipos personales, negocios y proyectos digitales, buscando mejorar rendimiento, seguridad, presentación y funcionamiento.</p>
+        </div>
+
+        <div class="services-layout">
+          <aside class="panel service-highlight">
+            <img src="Logo - Tarjeta de presentacion - Trabajos.png" alt="Logo y tarjetas de presentación de REYES TECH SOLUTIONS" />
+            <h3>Servicio técnico con imagen profesional</h3>
+            <p>Combinamos soporte confiable con una presentación clara para que tu equipo, negocio o proyecto digital funcione y se vea mejor.</p>
+            <ul class="mini-list">
+              <li>Diagnóstico claro antes de trabajar</li>
+              <li>Soluciones para hogar y negocio</li>
+              <li>Entrega con explicación al cliente</li>
+            </ul>
+          </aside>
+
+          <div class="grid-3">
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>
+              </div>
+              <h3>Optimización de Windows</h3>
+              <p>Mejoramos el rendimiento de tu computadora para que funcione más rápido, estable y segura.</p>
+              <ul>
+                <li>Limpieza de archivos innecesarios</li>
+                <li>Optimización de inicio</li>
+                <li>Revisión de procesos lentos</li>
+                <li>Mejora de rendimiento general</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 5-3 8-7 10-4-2-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-5"/></svg>
+              </div>
+              <h3>Seguridad y mantenimiento</h3>
+              <p>Protegemos y damos mantenimiento a tus equipos para evitar fallas, lentitud y pérdida de información.</p>
+              <ul>
+                <li>Eliminación de virus y malware</li>
+                <li>Mantenimiento preventivo</li>
+                <li>Mantenimiento correctivo</li>
+                <li>Diagnóstico de fallas</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M4 7l8-4 8 4-8 4-8-4z"/><path d="M4 12l8 4 8-4"/><path d="M4 17l8 4 8-4"/></svg>
+              </div>
+              <h3>Instalación de software</h3>
+              <p>Instalamos y configuramos programas necesarios para estudio, trabajo, oficina o negocio.</p>
+              <ul>
+                <li>Instalación de Microsoft Office</li>
+                <li>Configuración inicial</li>
+                <li>Licencias y activaciones correspondientes</li>
+                <li>Programas según necesidad</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+              </div>
+              <h3>Sistemas operativos</h3>
+              <p>Realizamos formateo, instalación y configuración de sistemas para dejar el equipo listo para usar.</p>
+              <ul>
+                <li>Instalación de Windows</li>
+                <li>Configuración básica del sistema</li>
+                <li>Instalación de controladores</li>
+                <li>Preparación para uso personal o laboral</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.2 2.5 3.4 5.5 3.4 9S14.2 18.5 12 21M12 3c-2.2 2.5-3.4 5.5-3.4 9S9.8 18.5 12 21"/></svg>
+              </div>
+              <h3>Diseño de páginas web</h3>
+              <p>Creamos sitios web modernos, adaptables y personalizados para impulsar la imagen de tu negocio.</p>
+              <ul>
+                <li>Páginas para negocios</li>
+                <li>Landing pages</li>
+                <li>Catálogos digitales</li>
+                <li>Sitios web responsivos</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M5 17h14M7 17V7h10v10M9 7V5h6v2M9 11h6M9 14h4"/></svg>
+              </div>
+              <h3>Soluciones para negocios</h3>
+              <p>Desarrollamos herramientas digitales que se ajustan al funcionamiento real de cada negocio.</p>
+              <ul>
+                <li>Sistemas web personalizados</li>
+                <li>Paneles administrativos</li>
+                <li>Reservaciones y pedidos</li>
+                <li>Digitalización de procesos</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="nosotros">
+      <div class="container about">
+        <div class="panel about-box">
+          <h2>¿Quiénes <span>somos?</span></h2>
+          <p>
+            REYES TECH SOLUTIONS es una empresa enfocada en brindar servicios tecnológicos confiables,
+            accesibles y adaptados a las necesidades de cada cliente. Nuestro objetivo es ayudar a que las personas
+            y negocios aprovechen mejor la tecnología.
+          </p>
+          <p>
+            Nos especializamos en soporte técnico, optimización de sistemas Windows, instalación de software,
+            mantenimiento de equipos y desarrollo de páginas web profesionales.
+          </p>
+          <div class="values">
+            <div class="value"><strong>Misión</strong><span>Brindar soluciones tecnológicas eficientes y accesibles.</span></div>
+            <div class="value"><strong>Visión</strong><span>Ser una marca reconocida por calidad, confianza e innovación.</span></div>
+            <div class="value"><strong>Propósito</strong><span>Impulsar hogares y negocios mediante tecnología útil.</span></div>
+            <div class="value"><strong>Valores</strong><span>Responsabilidad, honestidad, rapidez y profesionalismo.</span></div>
+          </div>
+        </div>
+
+        <div class="panel about-box">
+          <h2>¿Por qué elegirnos?</h2>
+          <p>Porque damos atención directa, explicamos el trabajo realizado y buscamos soluciones reales, no temporales.</p>
+          <ul class="why-list">
+            <li>Servicio rápido y confiable</li>
+            <li>Atención personalizada</li>
+            <li>Precios accesibles</li>
+            <li>Soporte remoto o presencial</li>
+            <li>Garantía en trabajos realizados</li>
+            <li>Soluciones para hogares, estudiantes y negocios</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-title">
+          <span>PROCESO</span>
+          <h2>Así trabajamos</h2>
+          <p>Un proceso simple para diagnosticar, resolver y entregar soluciones claras.</p>
+        </div>
+        <div class="process">
+          <div class="step">
+            <h3>Contacto</h3>
+            <p>El cliente explica lo que necesita por WhatsApp o correo.</p>
+          </div>
+          <div class="step">
+            <h3>Diagnóstico</h3>
+            <p>Se revisa el problema o requerimiento para definir la mejor solución.</p>
+          </div>
+          <div class="step">
+            <h3>Servicio</h3>
+            <p>Se realiza la reparación, instalación, optimización o desarrollo solicitado.</p>
+          </div>
+          <div class="step">
+            <h3>Entrega</h3>
+            <p>Se entrega el equipo o proyecto funcionando, con explicación al cliente.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="paquetes">
+      <div class="container">
+        <div class="section-title">
+          <span>PAQUETES</span>
+          <h2>Planes sugeridos de servicio</h2>
+          <p>Los precios pueden ajustarse dependiendo del estado del equipo, tipo de proyecto o necesidades del cliente.</p>
+        </div>
+
+        <div class="pricing">
+          <div class="price-card">
+            <h3>Paquete Básico</h3>
+            <div class="price">Desde $250 <small>MXN</small></div>
+            <ul>
+              <li>Diagnóstico general</li>
+              <li>Limpieza básica del sistema</li>
+              <li>Optimización de inicio</li>
+              <li>Revisión de rendimiento</li>
+            </ul>
+            <a class="btn btn-outline" href="https://wa.me/529821209690" target="_blank" rel="noopener">Solicitar</a>
+          </div>
+
+          <div class="price-card featured">
+            <h3>Paquete Completo</h3>
+            <div class="price">Desde $500 <small>MXN</small></div>
+            <ul>
+              <li>Optimización completa</li>
+              <li>Eliminación de virus</li>
+              <li>Instalación de programas</li>
+              <li>Configuración de Office</li>
+              <li>Revisión y mantenimiento</li>
+            </ul>
+            <a class="btn btn-whatsapp" href="https://wa.me/529821209690" target="_blank" rel="noopener">Cotizar recomendado</a>
+          </div>
+
+          <div class="price-card">
+            <h3>Paquete Web</h3>
+            <div class="price">Cotización <small>personalizada</small></div>
+            <ul>
+              <li>Página web profesional</li>
+              <li>Diseño adaptable a celular</li>
+              <li>Secciones para tu negocio</li>
+              <li>Botón de contacto por WhatsApp</li>
+              <li>Optimización visual</li>
+            </ul>
+            <a class="btn btn-outline" href="mailto:marcoreyeschan@gmail.com">Cotizar web</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="trabajos">
+      <div class="container">
+        <div class="section-title">
+          <span>TRABAJOS</span>
+          <h2>Lo que podemos hacer por ti</h2>
+          <p>Servicios ideales para personas, estudiantes, pequeños negocios y emprendimientos.</p>
+        </div>
+        <div class="portfolio">
+          <div class="work">
+            <h3>Equipo lento</h3>
+            <p>Optimización de Windows, limpieza del sistema y mejora de rendimiento.</p>
+          </div>
+          <div class="work">
+            <h3>Software de oficina</h3>
+            <p>Instalación, configuración y activación legal de herramientas de productividad.</p>
+          </div>
+          <div class="work">
+            <h3>Negocio digital</h3>
+            <p>Diseño de página web para mostrar servicios, ubicación, contacto y promociones.</p>
+          </div>
+          <div class="work">
+            <h3>Sistema personalizado</h3>
+            <p>Herramientas web hechas según las actividades reales de tu negocio.</p>
+          </div>
+          <div class="work">
+            <h3>Mantenimiento</h3>
+            <p>Revisión preventiva y correctiva para evitar fallas y mejorar estabilidad.</p>
+          </div>
+          <div class="work">
+            <h3>Imagen profesional</h3>
+            <p>Presencia digital moderna, clara y adaptable a computadoras y celulares.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidencias">
+      <div class="container">
+        <div class="section-title">
+          <span>EVIDENCIAS</span>
+          <h2>Resultados que puedes revisar</h2>
+          <p>Videos de un trabajo y demostracion real con autorización del cliente propietario, la presentación y el resultado de nuestro servicio.</p>
+        </div>
+
+        <div class="evidence-grid">
+          <article class="evidence-card">
+            <video src="assets/doc_2026-05-19_20-52-03.mp4" controls preload="metadata"></video>
+            <div class="evidence-body">
+              <span>Evidencia 01</span>
+              <h3>Pagina de inicio</h3>
+              <p>Registro visual del proceso y resultado para mostrar transparencia en el trabajo entregado.</p>
+            </div>
+          </article>
+
+          <article class="evidence-card">
+            <video src="assets/doc_2026-05-19_20-54-14.mp4" controls preload="metadata"></video>
+            <div class="evidence-body">
+              <span>Evidencia 02</span>
+              <h3>Demostración técnica</h3>
+              <p>Material de apoyo para comprobar funcionamiento, presentación y avance del servicio.</p>
+            </div>
+          </article>
+
+          <article class="evidence-card">
+            <video src="assets/doc_2026-05-19_20-19-55.mp4" controls preload="metadata"></video>
+            <div class="evidence-body">
+              <span>Evidencia 03</span>
+              <h3>Administración</h3>
+              <p>Vista del resultado final para que el cliente tenga confianza antes de solicitar una cotización.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="paginas-web">
+      <div class="container">
+        <div class="section-title">
+          <span>PÁGINAS WEB</span>
+          <h2>Proyectos web que pueden visitar</h2>
+          <p>Una selección de páginas realizadas para negocios y proyectos digitales. Con permisos del propietario.</p>
+        </div>
+
+        <div class="web-grid">
+          <article class="website-card">
+            <div class="website-preview">
+              <div class="website-preview-fallback">Vista previa de CombiApp</div>
+              <iframe data-src="https://aquamarine-mousse-1d0390.netlify.app/" title="Vista previa de CombiApp" loading="lazy"></iframe>
+            </div>
+            <span>CombiApp</span>
+            <h3>Sitio Web de transporte</h3>
+            <p>Sitio enfocado en presentar servicios, Optimización, organización y administración total de todo un sistema por medio de automatizaciones.</p>
+            <a class="btn btn-outline" href="https://aquamarine-mousse-1d0390.netlify.app/" target="_blank" rel="noopener">Visitar página</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview">
+              <div class="website-preview-fallback">Vista previa de Don Abraham</div>
+              <iframe data-src="https://storied-souffle-99ffd9.netlify.app/" title="Vista previa de Don Abraham" loading="lazy"></iframe>
+            </div>
+            <span>Don Abraham</span>
+            <h3>Pagina Web Simple y Sencillo</h3>
+            <p>Pagina super simplificada por exigencia del cliente solo para optimizar los pedidos y exigencias de los clientes por sus ordenes.</p>
+            <a class="btn btn-outline" href="https://storied-souffle-99ffd9.netlify.app/" target="_blank" rel="noopener">Visitar página</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview">
+              <div class="website-preview-fallback">Vista previa de AcompañaME</div>
+              <iframe data-src="https://acompanamee.netlify.app/index.html" title="Vista previa de AcompañaME" loading="lazy"></iframe>
+            </div>
+            <span>AcompañaME</span>
+            <h3>Cuidado con corazón para quienes lo merecen</h3>
+            <p>Sitio web de consulta para personas mayores que necesiten de apoyo general. Conectamos a adultos mayores con asistentes verificados y profesionales de confianza. Atención inmediata, personalizada y a domicilio.</p>
+            <a class="btn btn-outline" href="https://acompanamee.netlify.app/index.html" target="_blank" rel="noopener">Visitar página</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="demos-privados">
+      <div class="container">
+        <div class="section-title">
+          <span>DEMOS PRIVADOS</span>
+          <h2>Más proyectos desarrollados</h2>
+          <p>Estas muestras son demos parciales de interfaz y presentación. No representan sistemas completos ni incluyen todas las funciones del cliente, pero permiten revisar el estilo visual y la experiencia general.</p>
+        </div>
+
+        <div class="demo-grid">
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://sensational-sherbet-852b73.netlify.app/" title="Vista previa de PetCare - Veterinaria y Cuidado" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 01</span>
+            <h3>PetCare - Veterinaria y Cuidado</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Sitio web enfocado en clínicas veterinarias, estética canina y tiendas para mascotas. Permite mostrar servicios, planes de atención, recomendaciones y agendar citas de forma sencilla.</p>
+            <a class="btn btn-outline demo-link" href="https://sensational-sherbet-852b73.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://storied-torte-2efe9a.netlify.app/" title="Vista previa de AutoServicio Expreses" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 02</span>
+            <h3>AutoServicio Expreses</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Diseñada para promocionar servicios de mantenimiento, reparación, diagnósticos y paquetes automotrices. Incluye solicitud de citas y contacto rápido para clientes.</p>
+            <a class="btn btn-outline demo-link" href="https://storied-torte-2efe9a.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://heroic-tulumba-30ef61.netlify.app/" title="Vista previa de EventMaster" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 03</span>
+            <h3>EventMaster</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Plataforma diseñada para salones de eventos, organizadores y empresas de producción. Permite mostrar servicios, paquetes, calendarios de disponibilidad y formularios de cotización.</p>
+            <a class="btn btn-outline demo-link" href="https://heroic-tulumba-30ef61.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://sunny-sherbet-452a24.netlify.app/" title="Vista previa de MarketPlus" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 04</span>
+            <h3>MarketPlus</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Solución e-commerce enfocada en la venta de productos mediante un catálogo atractivo, promociones destacadas y contacto directo con clientes. Ideal para negocios que buscan expandir sus ventas en internet.</p>
+            <a class="btn btn-outline demo-link" href="https://sunny-sherbet-452a24.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://joyful-chimera-423475.netlify.app/" title="Vista previa de Viaja MX" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 05</span>
+            <h3>Viaja MX</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Página web diseñada para agencias de viajes y operadores turísticos. Permite promocionar destinos, paquetes vacacionales, experiencias turísticas y generar solicitudes de reservación de manera sencilla.</p>
+            <a class="btn btn-outline demo-link" href="https://joyful-chimera-423475.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://vocal-nougat-539b00.netlify.app/" title="Vista previa de Edu Control" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 06</span>
+            <h3>Edu Control</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Plataforma orientada a instituciones educativas para gestionar alumnos, docentes, materias, horarios, asistencias y reportes académicos, centralizando la información en un entorno digital moderno.</p>
+            <a class="btn btn-outline demo-link" href="https://vocal-nougat-539b00.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://starlit-starburst-6bbbfd.netlify.app/" title="Vista previa de Clínica Salud Integral" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 07</span>
+            <h3>Clínica Salud Integral</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Diseñado para la gestión y promoción de servicios médicos, especialidades, doctores y citas. Facilita la comunicación entre pacientes y profesionales de la salud mediante formularios y contacto directo.</p>
+            <a class="btn btn-outline demo-link" href="https://starlit-starburst-6bbbfd.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://fanciful-tapioca-5856fd.netlify.app/" title="Vista previa de Fitnes Pro Gym" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 08</span>
+            <h3>Fitnes Pro Gym</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Sistema promocional para gimnasios que permite mostrar servicios, planes de membresía, entrenadores, horarios y programas de entrenamiento, ofreciendo una experiencia moderna para atraer nuevos clientes.</p>
+            <a class="btn btn-outline demo-link" href="https://fanciful-tapioca-5856fd.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://flourishing-bubblegum-2a4352.netlify.app/" title="Vista previa de Inmobiliaria Campeche" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 09</span>
+            <h3>Inmobiliaria Campeche</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Plataforma web diseñada para la promoción de casas, terrenos, departamentos y locales comerciales. Permite mostrar propiedades destacadas, galerías de imágenes, información detallada de inmuebles y formularios de contacto para clientes interesados.</p>
+            <a class="btn btn-outline demo-link" href="https://flourishing-bubblegum-2a4352.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+
+          <article class="website-card">
+            <div class="website-preview demo-preview">
+              <div class="demo-preview-bar"><i></i><i></i><i></i></div>
+              <div class="demo-preview-screen"></div>
+              <iframe data-src="https://dynamic-taffy-8bd453.netlify.app/" title="Vista previa de Hotel paraiso" loading="lazy"></iframe>
+            </div>
+            <span>Demo parcial 10</span>
+            <h3>Hotel paraiso</h3>
+            <div class="demo-status">Interfaz parcial de muestra</div>
+            <p>Página web diseñada para promocionar habitaciones, servicios, instalaciones y paquetes turísticos. Facilita las reservaciones, consultas y comunicación con los huéspedes mediante una experiencia visual atractiva y profesional.</p>
+            <a class="btn btn-outline demo-link" href="https://dynamic-taffy-8bd453.netlify.app/" target="_blank" rel="noopener">Abrir demo parcial</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonios">
+      <div class="container">
+        <div class="section-title">
+          <span>TESTIMONIOS</span>
+          <h2>Opiniones de clientes</h2>
+          <p>Comparte tu experiencia con nuestros servicios técnicos, mantenimiento, instalación de software o proyectos web.</p>
+        </div>
+
+        <div class="testimonials-grid" id="testimonialList">
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“Mi computadora estaba muy lenta y quedó mucho más rápida. Me explicaron qué se hizo y cómo cuidarla mejor.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">AR</div>
+              <div>
+                <strong>Ana R.</strong>
+                <span>Optimización de Windows</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“Solicité instalación de Office y configuración básica. La atención fue rápida, clara y con seguimiento por WhatsApp.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">JM</div>
+              <div>
+                <strong>Jorge M.</strong>
+                <span>Instalación de software</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“Me ayudaron a presentar mi negocio con una página sencilla, moderna y fácil de compartir con mis clientes.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">LP</div>
+              <div>
+                <strong>Laura P.</strong>
+                <span>Página web para negocio</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“El mantenimiento dejó el equipo estable y listo para trabajar. Me gustó que revisaran seguridad y rendimiento.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">CS</div>
+              <div>
+                <strong>Carlos S.</strong>
+                <span>Mantenimiento preventivo</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“La demo de mi sistema ayudó a visualizar la idea antes de avanzar. Se entendió perfecto el flujo y la presentación.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">MG</div>
+              <div>
+                <strong>María G.</strong>
+                <span>Demo de interfaz web</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            <blockquote>“Recibí una cotización clara y una propuesta visual profesional. Me dio confianza para iniciar mi sitio web.”</blockquote>
+            <div class="testimonial-author">
+              <div class="testimonial-avatar">ER</div>
+              <div>
+                <strong>Eduardo R.</strong>
+                <span>Proyecto de sitio web</span>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="review-panel">
+          <h3>Deja tu comentario</h3>
+          <p>Tu opinión ayuda a que más personas conozcan la calidad del servicio y la experiencia de trabajar con REYES TECH SOLUTIONS.</p>
+
+          <form class="review-form" id="reviewForm">
+            <div>
+              <label for="reviewName">Nombre</label>
+              <input type="text" id="reviewName" placeholder="Tu nombre" required />
+            </div>
+
+            <div>
+              <label for="reviewService">Servicio o proyecto</label>
+              <select id="reviewService" required>
+                <option value="">Selecciona una opción</option>
+                <option>Optimización de Windows</option>
+                <option>Instalación de software</option>
+                <option>Mantenimiento de computadora</option>
+                <option>Página web para negocio</option>
+                <option>Demo de interfaz web</option>
+                <option>Proyecto de sitio web</option>
+                <option>Otro servicio</option>
+              </select>
+            </div>
+
+            <div class="field-full">
+              <label>Valoración</label>
+              <div class="rating-picker" aria-label="Seleccionar valoración">
+                <input type="radio" id="star5" name="rating" value="5" required />
+                <label for="star5" title="5 estrellas">★</label>
+                <input type="radio" id="star4" name="rating" value="4" />
+                <label for="star4" title="4 estrellas">★</label>
+                <input type="radio" id="star3" name="rating" value="3" />
+                <label for="star3" title="3 estrellas">★</label>
+                <input type="radio" id="star2" name="rating" value="2" />
+                <label for="star2" title="2 estrellas">★</label>
+                <input type="radio" id="star1" name="rating" value="1" />
+                <label for="star1" title="1 estrella">★</label>
+              </div>
+            </div>
+
+            <div class="field-full">
+              <label for="reviewText">Comentario</label>
+              <textarea id="reviewText" placeholder="Escribe tu experiencia con el servicio" required></textarea>
+            </div>
+
+            <div class="field-full">
+              <button class="btn btn-whatsapp" type="submit" style="width: 100%; border: none;">Publicar comentario</button>
+            </div>
+
+            <div class="field-full review-message" id="reviewMessage" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <div class="section-title">
+          <span>CONTACTO</span>
+          <h2>Solicita tu cotización</h2>
+          <p>Cuéntanos qué necesitas y te ayudamos a encontrar la mejor solución.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>REYES TECH SOLUTIONS</h3>
+            <p>Atención directa para soporte técnico, mantenimiento, instalación de software y desarrollo web.</p>
+            <div class="contact-item">
+              <strong>WhatsApp</strong>
+              <a href="https://wa.me/529821209690" target="_blank" rel="noopener">+52 982 120 9690</a>
+            </div>
+            <div class="contact-item">
+              <strong>Correo electrónico</strong>
+              <a href="mailto:marcoreyeschan@gmail.com">marcoreyeschan@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <strong>Servicios principales</strong>
+              <span>Soporte técnico, optimización Windows, instalación de software, mantenimiento y desarrollo web.</span>
+            </div>
+            <div class="contact-item">
+              <strong>Eslogan</strong>
+              <span>La tecnología que impulsa tu éxito.</span>
+            </div>
+          </div>
+
+          <form onsubmit="sendWhatsApp(event)">
+            <div class="form-grid">
+              <div>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div>
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" placeholder="Tu teléfono" required />
+              </div>
+              <div class="field-full">
+                <label for="servicio">Servicio</label>
+                <select id="servicio" required>
+                  <option value="">Selecciona un servicio</option>
+                  <option>Optimización de Windows</option>
+                  <option>Eliminación de virus</option>
+                  <option>Instalación de Office</option>
+                  <option>Formateo e instalación de sistema</option>
+                  <option>Mantenimiento de computadora</option>
+                  <option>Diseño de página web</option>
+                  <option>Sistema web personalizado</option>
+                  <option>Otro servicio</option>
+                </select>
+              </div>
+              <div class="field-full">
+                <label for="mensaje">Detalles</label>
+                <textarea id="mensaje" placeholder="Describe brevemente lo que necesitas" required></textarea>
+              </div>
+              <div class="field-full">
+                <button class="btn btn-whatsapp" type="submit" style="width: 100%; border: none;">Enviar por WhatsApp</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>REYES TECH SOLUTIONS</strong> · La tecnología que impulsa tu éxito.</p>
+    <p>WhatsApp: +52 982 120 9690 · Correo: marcoreyeschan@gmail.com</p>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/529821209690" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16.01 3.2A12.67 12.67 0 0 0 5.1 22.33L3.4 28.8l6.63-1.65A12.68 12.68 0 1 0 16.01 3.2Zm0 22.96c-2.05 0-3.94-.6-5.54-1.64l-.4-.25-3.91.97 1.02-3.8-.27-.42a10.24 10.24 0 1 1 9.1 5.14Zm5.9-7.66c-.32-.16-1.9-.94-2.2-1.05-.3-.1-.52-.16-.73.16-.22.32-.84 1.05-1.03 1.26-.19.22-.38.24-.7.08-.32-.16-1.36-.5-2.6-1.6-.96-.85-1.61-1.9-1.8-2.23-.19-.32-.02-.5.14-.66.15-.15.32-.38.49-.57.16-.19.22-.32.32-.54.11-.22.06-.41-.03-.57-.08-.16-.73-1.76-1-2.41-.27-.63-.54-.54-.73-.55h-.62c-.22 0-.57.08-.86.41-.3.32-1.13 1.1-1.13 2.68s1.16 3.12 1.32 3.33c.16.22 2.28 3.48 5.52 4.88.77.33 1.37.53 1.84.68.77.24 1.48.21 2.04.13.62-.09 1.9-.78 2.17-1.53.27-.75.27-1.4.19-1.53-.08-.13-.3-.21-.62-.37Z"/></svg>
+  </a>
+
+  <script>
+    const pageLoader = document.getElementById("pageLoader");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const loaderStartedAt = performance.now();
+    const loaderMinDuration = prefersReducedMotion ? 350 : 5000;
+
+    function hidePageLoader() {
+      if (!pageLoader) return;
+      pageLoader.classList.add("is-hidden");
+      document.body.classList.remove("is-loading");
+      window.setTimeout(() => {
+        pageLoader.remove();
+      }, prefersReducedMotion ? 0 : 700);
+    }
+
+    function hidePageLoaderAfterMinimum() {
+      const elapsed = performance.now() - loaderStartedAt;
+      window.setTimeout(hidePageLoader, Math.max(0, loaderMinDuration - elapsed));
+    }
+
+    window.setTimeout(hidePageLoader, prefersReducedMotion ? 700 : 5500);
+    window.addEventListener("load", () => {
+      hidePageLoaderAfterMinimum();
+    }, { once: true });
+
+    function toggleMenu() {
+      const menu = document.getElementById("menu");
+      const button = document.getElementById("menuButton");
+      const isOpen = menu.classList.toggle("active");
+      button.classList.toggle("active", isOpen);
+      button.setAttribute("aria-expanded", String(isOpen));
+    }
+
+    document.querySelectorAll("nav a").forEach((link) => {
+      link.addEventListener("click", () => {
+        document.getElementById("menu").classList.remove("active");
+        document.getElementById("menuButton")?.classList.remove("active");
+        document.getElementById("menuButton")?.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function loadPreview(preview) {
+      const iframe = preview.querySelector("iframe[data-src]");
+      if (!iframe || iframe.getAttribute("src")) return;
+      iframe.src = iframe.dataset.src;
+      preview.classList.add("preview-loaded");
+      preview.classList.add("has-preview");
+    }
+
+    function unloadPreview(preview) {
+      const iframe = preview.querySelector("iframe[data-src]");
+      if (!iframe || !iframe.getAttribute("src")) return;
+      iframe.removeAttribute("src");
+      preview.classList.remove("preview-loaded");
+    }
+
+    const previewObserver = "IntersectionObserver" in window
+      ? new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadPreview(entry.target);
+            } else {
+              window.setTimeout(() => {
+                const rect = entry.target.getBoundingClientRect();
+                const farAbove = rect.bottom < -700;
+                const farBelow = rect.top > window.innerHeight + 700;
+                if (farAbove || farBelow) unloadPreview(entry.target);
+              }, 500);
+            }
+          });
+        }, { rootMargin: "450px 0px", threshold: 0.01 })
+      : null;
+
+    document.querySelectorAll(".website-preview").forEach((preview) => {
+      if (previewObserver) {
+        previewObserver.observe(preview);
+      } else {
+        loadPreview(preview);
+      }
+    });
+
+    document.querySelectorAll(".demo-link").forEach((link, index) => {
+      const card = link.closest(".website-card");
+      const preview = card?.querySelector(".demo-preview");
+      const href = link.getAttribute("href") || "";
+      const hasUrl = href.startsWith("http://") || href.startsWith("https://");
+      const existingIframe = preview?.querySelector("iframe");
+
+      if (preview && hasUrl) {
+        if (!existingIframe) {
+          const iframe = document.createElement("iframe");
+          iframe.dataset.src = href;
+          iframe.title = `Vista previa demo parcial ${index + 1}`;
+          iframe.loading = "lazy";
+          preview.appendChild(iframe);
+        }
+      }
+
+      if (!hasUrl) {
+        link.addEventListener("click", (event) => {
+          event.preventDefault();
+        });
+      }
+    });
+
+    const SUPABASE_URL = "https://apeclgiinyhnxqifayrj.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFwZWNsZ2lpbnlobnhxaWZheXJqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyNDExNDEsImV4cCI6MjA5NTgxNzE0MX0.lo-DbZ9d9O9K76Wcu88tH6e0EF9SovyPfxvFRriAg_k";
+    const reviewForm = document.getElementById("reviewForm");
+    const testimonialList = document.getElementById("testimonialList");
+    const reviewMessage = document.getElementById("reviewMessage");
+    const supabaseClient = SUPABASE_URL && SUPABASE_ANON_KEY && window.supabase
+      ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+      : null;
+
+    function escapeHTML(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function getInitials(name) {
+      return name
+        .trim()
+        .split(/\s+/)
+        .slice(0, 2)
+        .map((part) => part.charAt(0).toUpperCase())
+        .join("") || "RT";
+    }
+
+    function createReviewCard(review) {
+      const article = document.createElement("article");
+      article.className = "testimonial-card";
+      const rating = Math.max(1, Math.min(5, Number(review.rating) || 5));
+      article.innerHTML = `
+        <div class="stars" aria-label="${rating} estrellas">${"★".repeat(rating)}${"☆".repeat(5 - rating)}</div>
+        <blockquote>“${escapeHTML(review.text)}”</blockquote>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">${escapeHTML(getInitials(review.name))}</div>
+          <div>
+            <strong>${escapeHTML(review.name)}</strong>
+            <span>${escapeHTML(review.service)}</span>
+          </div>
+        </div>
+      `;
+      return article;
+    }
+
+    async function loadReviews() {
+      if (!supabaseClient || !testimonialList) return;
+
+      const { data, error } = await supabaseClient
+        .from("testimonials")
+        .select("name, service, rating, comment")
+        .order("created_at", { ascending: false })
+        .limit(12);
+
+      if (error) {
+        if (reviewMessage) {
+          reviewMessage.textContent = "No se pudieron cargar las opiniones en este momento.";
+        }
+        return;
+      }
+
+      data.forEach((review) => {
+        testimonialList.prepend(createReviewCard({
+          name: review.name,
+          service: review.service,
+          rating: review.rating,
+          text: review.comment
+        }));
+      });
+    }
+
+    loadReviews();
+
+    reviewForm?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const ratingInput = reviewForm.querySelector("input[name='rating']:checked");
+      const review = {
+        name: document.getElementById("reviewName").value.trim(),
+        service: document.getElementById("reviewService").value,
+        rating: Number(ratingInput?.value || 5),
+        text: document.getElementById("reviewText").value.trim()
+      };
+
+      if (!review.name || !review.service || !review.text || !ratingInput) {
+        reviewMessage.textContent = "Completa todos los campos y selecciona una valoración.";
+        return;
+      }
+
+      if (!supabaseClient) {
+        reviewMessage.textContent = "Falta configurar Supabase para guardar comentarios.";
+        return;
+      }
+
+      reviewMessage.textContent = "Publicando comentario...";
+
+      const { error } = await supabaseClient
+        .from("testimonials")
+        .insert({
+          name: review.name,
+          service: review.service,
+          rating: review.rating,
+          comment: review.text
+        });
+
+      if (error) {
+        reviewMessage.textContent = `No se pudo publicar el comentario: ${error.message}`;
+        return;
+      }
+
+      testimonialList?.prepend(createReviewCard(review));
+      reviewForm.reset();
+      reviewMessage.textContent = "Gracias, tu comentario fue enviado correctamente.";
+    });
+
+    function sendWhatsApp(event) {
+      event.preventDefault();
+      const nombre = document.getElementById("nombre").value.trim();
+      const telefono = document.getElementById("telefono").value.trim();
+      const servicio = document.getElementById("servicio").value;
+      const mensaje = document.getElementById("mensaje").value.trim();
+
+      const texto = `Hola, soy ${nombre}. Mi teléfono es ${telefono}. Me interesa el servicio de: ${servicio}. Detalles: ${mensaje}`;
+      const url = `https://wa.me/529821209690?text=${encodeURIComponent(texto)}`;
+      window.open(url, "_blank");
+    }
+
+
+
+    let deferredInstallPrompt = null;
+    const installAppBtn = document.getElementById("installAppBtn");
+
+    window.addEventListener("beforeinstallprompt", (event) => {
+      event.preventDefault();
+      deferredInstallPrompt = event;
+      installAppBtn?.classList.add("show");
+    });
+
+    installAppBtn?.addEventListener("click", async () => {
+      if (!deferredInstallPrompt) return;
+      deferredInstallPrompt.prompt();
+      await deferredInstallPrompt.userChoice;
+      deferredInstallPrompt = null;
+      installAppBtn.classList.remove("show");
+    });
+
+    window.addEventListener("appinstalled", () => {
+      deferredInstallPrompt = null;
+      installAppBtn?.classList.remove("show");
+    });
+
+    if ("serviceWorker" in navigator && location.protocol !== "file:") {
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js").catch(() => {});
+      });
+    }
+  </script>
+
+  <button id="installAppBtn" class="install-app-btn" type="button" aria-label="Instalar REYES TECH SOLUTIONS">
+    📲 Instalar app
+  </button>
+
+</body>
+</html>

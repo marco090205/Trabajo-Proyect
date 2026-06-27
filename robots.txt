@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://reyestechsolutions.netlify.app/sitemap.xml
