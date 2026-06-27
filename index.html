@@ -2060,6 +2060,22 @@
       }
     }
 
+    /* ============================================
+       CLASES PARA ANIMACIONES GSAP
+       ============================================ */
+    
+    .hero-title, .hero-subtitle, .hero-btns {
+      will-change: transform, opacity;
+    }
+
+    .parallax-bg, .parallax-img {
+      will-change: transform;
+    }
+
+    .service-card, .project-card, .testimonial-card, .contact-anim, .section-header {
+      will-change: transform, opacity;
+    }
+
   </style>
 
 
@@ -2084,6 +2100,10 @@
     "url":"https://reyestechsolutions.netlify.app/"
   }
   </script>
+
+  <!-- GSAP & ScrollTrigger (Librerías de Animación Cinemática) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
 </head>     
 
@@ -2151,16 +2171,23 @@
 
   <main>
     <section class="hero" id="inicio">
-      <div class="container hero-grid">
+      <!-- Parallax Background Layer -->
+      <div class="parallax-bg" style="position: absolute; inset: 0; overflow: hidden; z-index: 0;">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=2300" 
+             alt="Background tecnológico" 
+             style="width: 100%; height: 120%; object-fit: cover; opacity: 0.15;" />
+      </div>
+      
+      <div class="container hero-grid" style="position: relative; z-index: 1;">
         <div>
-          <div class="eyeline">Soporte técnico, software y páginas web profesionales</div>
-          <h2>La tecnología que <span>impulsa</span> tu éxito</h2>
-          <p>
+          <div class="eyeline hero-subtitle">Soporte técnico, software y páginas web profesionales</div>
+          <h2 class="hero-title">La tecnología que <span>impulsa</span> tu éxito</h2>
+          <p class="hero-subtitle">
             En <strong>REYES TECH SOLUTIONS</strong> resolvemos problemas técnicos y creamos presencia digital
             para hogares, estudiantes, emprendedores y negocios. Optimizamos equipos, instalamos sistemas,
             configuramos software legal y desarrollamos páginas web modernas adaptadas a tus necesidades.
           </p>
-          <div class="hero-actions">
+          <div class="hero-actions hero-btns">
             <a class="btn btn-whatsapp" href="https://wa.me/529821209690" target="_blank" rel="noopener">Enviar WhatsApp</a>
             <a class="btn btn-outline" href="#servicios">Ver servicios</a>
           </div>
@@ -2195,14 +2222,14 @@
 
     <section id="servicios">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title section-header">
           <span>SERVICIOS</span>
           <h2>Soluciones completas en un solo lugar</h2>
           <p>Trabajamos con equipos personales, negocios y proyectos digitales, buscando mejorar rendimiento, seguridad, presentación y funcionamiento.</p>
         </div>
 
         <div class="services-layout">
-          <aside class="panel service-highlight">
+          <aside class="panel service-highlight service-card">
             <img src="Logo - Tarjeta de presentacion - Trabajos.png" alt="Logo y tarjetas de presentación de REYES TECH SOLUTIONS" />
             <h3>Servicio técnico con imagen profesional</h3>
             <p>Combinamos soporte confiable con una presentación clara para que tu equipo, negocio o proyecto digital funcione y se vea mejor.</p>
@@ -2680,7 +2707,7 @@
 
     <section id="testimonios">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title section-header">
           <span>TESTIMONIOS</span>
           <h2>Opiniones de clientes</h2>
           <p>Comparte tu experiencia con nuestros servicios técnicos, mantenimiento, instalación de software o proyectos web.</p>
@@ -2817,14 +2844,14 @@
 
     <section id="contacto">
       <div class="container">
-        <div class="section-title">
+        <div class="section-title section-header">
           <span>CONTACTO</span>
           <h2>Solicita tu cotización</h2>
           <p>Cuéntanos qué necesitas y te ayudamos a encontrar la mejor solución.</p>
         </div>
 
         <div class="contact-grid">
-          <div class="contact-info">
+          <div class="contact-info contact-anim">
             <h3>REYES TECH SOLUTIONS</h3>
             <p>Atención directa para soporte técnico, mantenimiento, instalación de software y desarrollo web.</p>
             <div class="contact-item">
@@ -2845,7 +2872,7 @@
             </div>
           </div>
 
-          <form onsubmit="sendWhatsApp(event)">
+          <form onsubmit="sendWhatsApp(event)" class="contact-anim">
             <div class="form-grid">
               <div>
                 <label for="nombre">Nombre</label>
@@ -3152,6 +3179,124 @@
         navigator.serviceWorker.register("./sw.js").catch(() => {});
       });
     }
+
+    // ============================================
+    // ANIMACIONES CINEMÁTICAS CON GSAP Y SCROLLTRIGGER
+    // ============================================
+    
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Animación de entrada del Hero (después de cargar)
+    const heroTl = gsap.timeline({ delay: 0.5 });
+    heroTl.from(".hero-title", { y: 60, opacity: 0, duration: 1.2, ease: "power3.out" })
+          .from(".hero-subtitle", { y: 40, opacity: 0, duration: 1, ease: "power3.out" }, "-=0.7")
+          .from(".hero-btns", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, "-=0.6");
+
+    // Parallax Effect para imágenes de fondo
+    gsap.to(".parallax-bg", {
+      yPercent: 25,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // Sección de imagen intermedia con efecto parallax + scale
+    gsap.to(".parallax-img", {
+      yPercent: 15,
+      scale: 1.1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".parallax-section",
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true
+      }
+    });
+
+    // Animación de tarjetas de servicios (staggered fade up + scale)
+    gsap.from(".service-card", {
+      scrollTrigger: {
+        trigger: "#servicios",
+        start: "top 85%",
+        toggleActions: "play none none reverse"
+      },
+      y: 60,
+      opacity: 0,
+      scale: 0.92,
+      duration: 0.9,
+      stagger: 0.15,
+      ease: "back.out(1.6)"
+    });
+
+    // Animación de títulos de sección
+    gsap.utils.toArray('.section-header').forEach(header => {
+      gsap.from(header, {
+        scrollTrigger: {
+          trigger: header,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        y: 40,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+      });
+    });
+
+    // Animación de proyectos (slide in desde lados opuestos)
+    gsap.utils.toArray('.project-card').forEach((card, i) => {
+      gsap.from(card, {
+        scrollTrigger: {
+          trigger: card,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        x: i % 2 === 0 ? -60 : 60,
+        y: 40,
+        opacity: 0,
+        duration: 1.1,
+        ease: "power3.out"
+      });
+    });
+
+    // Animación de testimonios
+    gsap.from(".testimonial-card", {
+      scrollTrigger: {
+        trigger: "#testimonios",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      },
+      y: 50,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.15,
+      ease: "power2.out"
+    });
+
+    // Formulario de contacto (fade up simple)
+    gsap.from(".contact-anim", {
+      scrollTrigger: {
+        trigger: "#contacto",
+        start: "top 80%",
+        toggleActions: "play none none reverse"
+      },
+      y: 40,
+      opacity: 0,
+      duration: 0.9,
+      stagger: 0.1,
+      ease: "power2.out"
+    });
+
+    // Navbar cambio de estilo al hacer scroll
+    ScrollTrigger.create({
+      start: 'top -80',
+      end: 99999,
+      toggleClass: { className: 'scrolled', targets: '#navbar' }
+    });
   </script>
 
   <button id="installAppBtn" class="install-app-btn" type="button" aria-label="Instalar REYES TECH SOLUTIONS">
